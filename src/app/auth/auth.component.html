@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="text-center">
+    <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
+  </div>
+  <div class="col-xs-12 col-md-6 col-md-offset-3 isLogInMode-{{ isLogInMode }}">
+    <ng-template appPlaceholder></ng-template>
+    <form
+      *ngIf="!showSpinner"
+      #formAuth="ngForm"
+      (ngSubmit)="onSubmit(formAuth)"
+    >
+      <h3>{{ !isLogInMode ? "Sign Up" : "Log-In" }}</h3>
+      <div class="form-group">
+        <label for="email">E-Mail</label>
+        <input
+          type="email"
+          name="email"
+          id="eamil"
+          class="form-control"
+          ngModel
+          required
+          email
+        />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          class="form-control"
+          ngModel
+          required
+          minlength="6"
+        />
+      </div>
+
+      <div class="form-group">
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="!formAuth.valid"
+        >
+          {{ !isLogInMode ? "Sign Up" : "Log-In" }}
+        </button>
+        &nbsp;Or&nbsp;
+        <button class="btn btn-info" type="button" (click)="onSwitchMode()">
+          Switch to {{ isLogInMode ? "Sign Up" : "Log-In" }}
+        </button>
+      </div>
+      <div class="lds-ripple">
+        <div></div>
+        <div></div>
+      </div>
+    </form>
+  </div>
+</div>

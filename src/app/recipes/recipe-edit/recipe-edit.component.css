@@ -1,0 +1,22 @@
+
+span.help-block{
+    color: red;
+}
+.btn{
+    margin: 0px 2px;
+}
+div.row {
+    margin-top: 2px;
+}
+.ng-touched.ng-invalid:not(form,div) {
+    border: solid 1px red;
+    background-color: #f7e1e4; 
+}
+.ng-valid:not(form,div) {
+    border: solid 1px green;
+    background-color:initial; 
+} 
+
+ul{
+    padding-left: 5px;
+}

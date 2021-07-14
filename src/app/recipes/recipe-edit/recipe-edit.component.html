@@ -1,0 +1,175 @@
+<div>
+  <h3 class="text-info">{{ recipe ? "Edit recipe" : "New recipe" }}</h3>
+  <form [formGroup]="frmRecipe" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <div class="row">
+        <div class="col-xs-12">
+          <button
+            type="submit"
+            class="btn btn-success"
+            [disabled]="!frmRecipe.valid"
+          >
+            Save
+          </button>
+          <button
+            type="Button"
+            class="btn btn-danger"
+            [routerLink]="navigateBack()"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+      <!-- Recipe name -->
+      <div class="form-group">
+        <div class="row">
+          <div class="col-xs-12">
+            <label for="recipeName">Recipe name</label>
+            <input
+              type="text"
+              id="recipeName"
+              name="recipeName"
+              class="form-control"
+              formControlName="recipeName"
+            />
+            <span
+              class="help-block"
+              *ngIf="
+                !frmRecipe.get('recipeName').valid &&
+                frmRecipe.get('recipeName').touched
+              "
+              >{{ getErros("recipeName") }}</span
+            >
+          </div>
+        </div>
+      </div>
+      <!-- Description -->
+      <div class="form-group">
+        <div class="row">
+          <div class="col-xs-12">
+            <label for="recipeDesc">Description</label>
+            <textarea
+              id="recipeDesc"
+              name="recipeDesc"
+              class="form-control"
+              rows="4"
+              minlength="3"
+              formControlName="recipeDesc"
+            >
+            </textarea>
+            <span
+              >Characters count:
+              {{ frmRecipe.get("recipeDesc").value.length }}</span
+            >
+            <span
+              class="help-block"
+              *ngIf="
+                !frmRecipe.get('recipeDesc').valid &&
+                frmRecipe.get('recipeDesc').touched
+              "
+              >{{ getErros("recipeDesc") }}</span
+            >
+          </div>
+        </div>
+      </div>
+      <!-- Recipe image path -->
+      <div class="form-group">
+        <div class="row">
+          <div class="col-xs-12">
+            <label for="recipeImagePath">Recipe image path</label>
+            <input
+              type="url"
+              id="recipeImagePath"
+              name="recipeImagePath"
+              class="form-control"
+              formControlName="recipeImagePath"
+              #recipeImagePath
+            />
+            <span
+              class="help-block"
+              *ngIf="
+                !frmRecipe.get('recipeImagePath').valid &&
+                frmRecipe.get('recipeImagePath').touched
+              "
+              >{{ getErros("recipeImagePath") }}</span
+            >
+          </div>
+        </div>
+      </div>
+      <!-- Recipe image preview -->
+      <div class="row">
+        <div class="col-xs-12">
+          <img [src]="recipeImagePath.value" alt="" class="img-responsive" />
+        </div>
+      </div>
+      <!-- Ingredients -->
+      <hr />
+      <h4>Ingredients</h4>
+      <div class="form-group" formArrayName="recipeIngredients">
+        <div class="row">
+          <div class="col-xs-12">
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="onDeleteIng(-1)"
+            >
+              X All
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <div
+              class="row"
+              *ngFor="
+                let ingControl of getFormControls('recipeIngredients').controls;
+                let idx = index
+              "
+              [formGroupName]="idx"
+            >
+              <div class="col-xs-8">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="name"
+                />
+              </div>
+              <div class="col-xs-2">
+                <input
+                  type="number"
+                  class="form-control"
+                  min="0.1"
+                  formControlName="amount"
+                />
+              </div>
+              <div class="col-xs-2">
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  (click)="onDeleteIng(idx)"
+                >
+                  X
+                </button>
+              </div>
+            </div>
+            <hr />
+            <div class="form-group">
+              <div class="row">
+                <div class="col-xs-12">
+                  <button
+                    [disabled]="!frmRecipe.valid"
+                    type="button"
+                    class="btn btn-primary"
+                    (click)="onAddIng()"
+                  >
+                    Add
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

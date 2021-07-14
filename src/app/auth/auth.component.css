@@ -1,0 +1,10 @@
+.isLogInMode-true {
+    background-color: #e7f4f9;
+    padding: 30px;
+    border-radius: 5px;
+}
+.isLogInMode-false {
+    background-color: #f3efef;
+    padding: 30px;
+    border-radius: 5px;
+}
