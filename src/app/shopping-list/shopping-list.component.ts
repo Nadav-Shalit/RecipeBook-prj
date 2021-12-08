@@ -4,7 +4,7 @@ import { Store } from "@ngrx/store";
 
 import { LoggingService } from "./../logging.service";
 import { Ingredient } from "./../shared/ingredient.model";
-import { ShoppingListService } from "./shopping-list.service";
+// import { ShoppingListService } from "./shopping-list.service"; //Comment since we use the store and state
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import * as ShoppingAction from "./store/shopping-list.actions";
 import * as fromShppingList from "./store/shopping-list.reducer";
@@ -19,7 +19,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   isEdit: boolean = false;
   //private subsIngredientChanged:Subscription;
   constructor(
-    private shoppingListSrv: ShoppingListService,
+    // private shoppingListSrv: ShoppingListService,//Comment since we use the store and state
     private logSrv: LoggingService,
     private store: Store<fromShppingList.AppState>
   ) {}

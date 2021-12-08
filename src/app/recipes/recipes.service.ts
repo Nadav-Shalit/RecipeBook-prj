@@ -1,6 +1,6 @@
 import { Store } from "@ngrx/store";
 import { Subject } from "rxjs";
-import { ShoppingListService } from "./../shopping-list/shopping-list.service";
+// import { ShoppingListService } from "./../shopping-list/shopping-list.service";//Comment since we use the store and state
 import { Injectable } from "@angular/core";
 import { Ingredient } from "../shared/ingredient.model";
 import { Recipe } from "./recipe.model";
@@ -39,7 +39,7 @@ export class RecipeService {
   // ];
 
   constructor(
-    private shoppingListSrv: ShoppingListService,
+    // private shoppingListSrv: ShoppingListService,//Comment since we use the store and state
     private store: Store<fromShppingList.AppState>
   ) {}
 
@@ -58,7 +58,10 @@ export class RecipeService {
     return this.recipes.find((rcp) => rcp.name === name);
   }
   addIngredientToShoppingList(ingredients: Ingredient[]) {
-    this.shoppingListSrv.addIngredients(ingredients);
+    // this.shoppingListSrv.addIngredients(ingredients);
+    this.store.dispatch(
+      new ShoppingListActios.AddMultiIngredients(ingredients)
+    );
   }
   addRecipeIngredientToShoppingList(recipe: Recipe) {
     this.store.dispatch(
