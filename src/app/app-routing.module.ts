@@ -21,8 +21,14 @@ const appRoutes:Routes = [
         (m) => m.ShoppingListMoudle
       ),
   },
-///Old Version  
-{path:'auth', loadChildren:'./auth/auth.module#AuthModule'},
+
+{path:'auth', 
+loadChildren: () =>
+  import('./auth/auth.module').then(
+    (a) => a.AuthModule
+  )
+
+},
 
 ]
 @NgModule({

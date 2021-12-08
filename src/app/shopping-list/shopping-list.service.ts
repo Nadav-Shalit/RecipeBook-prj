@@ -23,7 +23,7 @@ export class ShoppingListService{
         }
         addIngredients(ingredientsToAdd: Ingredient[]):void{
             for (let idx = 0; idx < ingredientsToAdd.length; idx++) {
-            this.upsertIngredient(ingredientsToAdd[idx]);
+            //this.upsertIngredient(ingredientsToAdd[idx]);
             }
         this.ingredientChanged.next(this.fetch());
         }
@@ -32,10 +32,11 @@ export class ShoppingListService{
                 let curIng = this.upsertIngredient(recipe.ingredients[idx]);               
                 curIng.addRecipeNames(recipe.name);
             }
+            
             this.ingredientChanged.next(this.fetch());
         }
         upsertIngredient(ingredient:Ingredient):Ingredient{
-            let currentIngedient = this.ingredients.find(ing => ing.name === ingredient.name);
+            let currentIngedient = this.ingredients.find(ing => ing.name.toLocaleLowerCase() === ingredient.name.toLocaleLowerCase());
             if(currentIngedient){
                 currentIngedient.amount+= (+ingredient.amount); 
                 } else {

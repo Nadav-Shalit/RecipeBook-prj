@@ -49,7 +49,15 @@
             (click)="onClear()"
             [disabled]="!frmIngredient.valid"
           >
-            Clear
+            Reset
+          </button>
+          <button
+            class="btn btn-danger"
+            type="button"
+            (click)="onClearAll()"
+            [disabled]="selectedIngredientIndex !== -1"
+          >
+            Delete All
           </button>
         </div>
       </div>
