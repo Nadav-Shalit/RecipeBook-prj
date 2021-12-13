@@ -11,11 +11,7 @@ export interface AppState {
   shoppingList: State;
 }
 const initState: State = {
-  ingredients: [
-    new Ingredient("Onion", 1),
-    new Ingredient("Salt", 2),
-    new Ingredient("Corn", 0.5),
-  ],
+  ingredients: [],
   curIngredient: null,
   selectedIndex: -1,
 };
