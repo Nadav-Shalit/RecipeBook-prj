@@ -1,5 +1,4 @@
 import { Action } from "@ngrx/store";
-
 import { Ingredient } from "src/app/shared/ingredient.model";
 
 export enum INGREDIENT_ACTIONS {

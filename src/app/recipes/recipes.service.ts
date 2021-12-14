@@ -5,8 +5,7 @@ import { Injectable } from "@angular/core";
 import { Ingredient } from "../shared/ingredient.model";
 import { Recipe } from "./recipe.model";
 import * as ShoppingListActios from "../shopping-list/store/shopping-list.actions";
-import * as fromShppingList from "../shopping-list/store/shopping-list.reducer";
-// import { Validators } from '@angular/forms';
+import * as fromAppState from "../store/app.reducer";
 @Injectable()
 export class RecipeService {
   recipeSelected = new Subject<Recipe>();
@@ -40,7 +39,7 @@ export class RecipeService {
 
   constructor(
     // private shoppingListSrv: ShoppingListService,//Comment since we use the store and state
-    private store: Store<fromShppingList.AppState>
+    private store: Store<fromAppState.AppState>
   ) {}
 
   setRecipes(recpies: Recipe[]): void {

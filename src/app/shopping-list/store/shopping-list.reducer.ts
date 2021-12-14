@@ -1,4 +1,3 @@
-import { Recipe } from "./../../recipes/recipe.model";
 import { Ingredient } from "src/app/shared/ingredient.model";
 import * as ShoppingListActios from "./shopping-list.actions";
 
@@ -7,9 +6,7 @@ export interface State {
   curIngredient: Ingredient;
   selectedIndex: number;
 }
-export interface AppState {
-  shoppingList: State;
-}
+
 const initState: State = {
   ingredients: [],
   curIngredient: null,
@@ -46,9 +43,6 @@ export function shoppingListReducer(
       break;
     case ShoppingListActios.INGREDIENT_ACTIONS.UPDATE_INGREDIENT:
       updateIngredients[state.selectedIndex] = action.payload.ingredient;
-      // updateIngredients[state.selectedIndex].recipeNames = [
-      //   ...action.payload.ingredient.recipeNames,
-      // ];
       return {
         ...state,
         ingredients: updateIngredients,
@@ -93,7 +87,6 @@ export function shoppingListReducer(
       };
       break;
     default:
-      console.log("state:", state);
       return state;
       break;
   }

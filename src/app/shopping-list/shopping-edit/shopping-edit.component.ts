@@ -6,7 +6,7 @@ import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { Ingredient } from "../../shared/ingredient.model";
 import { FormGroup } from "@angular/forms";
 import * as ShoppingListActions from "../store/shopping-list.actions";
-import * as fromShppingList from "../store/shopping-list.reducer";
+import * as fromAppState from "../../store/app.reducer";
 
 @Component({
   selector: "app-shopping-edit",
@@ -19,7 +19,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   subscriptionParam: Subscription;
   constructor(
     // private shoppingListSrv: ShoppingListService,//Comment since we use the store and state
-    private store: Store<fromShppingList.AppState>
+    private store: Store<fromAppState.AppState>
   ) {}
 
   ngOnInit() {
@@ -67,13 +67,11 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   onClear() {
     this.frmIngredient.reset();
     this.store.dispatch(new ShoppingListActions.StopEdit());
-    //this.selectedIngredientIndex=-1;
   }
   onClearAll() {
     if (confirm("Are you sure to delete all ingrediernts?")) {
       this.frmIngredient.reset();
       this.store.dispatch(new ShoppingListActions.ClearIngredients());
     }
-    //this.selectedIngredientIndex=-1;
   }
 }
