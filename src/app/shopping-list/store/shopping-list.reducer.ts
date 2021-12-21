@@ -102,14 +102,18 @@ function upsertIngredient(
     if (idx === -1) {
       updateIngredients = [...updateIngredients, newIng];
     } else {
-      const recipeNames: string[] = [...updateIngredients[idx].recipeNames];
+      const recipeNames: string[] = updateIngredients[idx].recipeNames
+        ? [...updateIngredients[idx].recipeNames]
+        : [];
       updateIngredients[idx] = new Ingredient(
         newIng.name,
         updateIngredients[idx].amount + newIng.amount
       );
-      newIng.recipeNames.forEach((rcp) => {
-        recipeNames.push(rcp);
-      });
+      if (newIng.recipeNames) {
+        newIng.recipeNames.forEach((rcp) => {
+          recipeNames.push(rcp);
+        });
+      }
       recipeNames.forEach((rcp) => {
         updateIngredients[idx].addRecipeNames(rcp);
       });
