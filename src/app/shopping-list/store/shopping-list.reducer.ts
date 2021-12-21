@@ -105,7 +105,6 @@ function upsertIngredient(
       const recipeNames: string[] = updateIngredients[idx].recipeNames
         ? [...updateIngredients[idx].recipeNames]
         : [];
-      console.log("updateIngredients:108", newIng.recipeNames);
       updateIngredients[idx] = new Ingredient(
         newIng.name,
         updateIngredients[idx].amount + newIng.amount
