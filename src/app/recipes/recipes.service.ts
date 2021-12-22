@@ -6,6 +6,7 @@ import { Ingredient } from "../shared/ingredient.model";
 import { Recipe } from "./recipe.model";
 import * as ShoppingListActios from "../shopping-list/store/shopping-list.actions";
 import * as fromAppState from "../store/app.reducer";
+import { RecipeRatingService } from "./recipe-rating/state/recipe-rating.service";
 @Injectable()
 export class RecipeService {
   recipeSelected = new Subject<Recipe>();
@@ -39,7 +40,8 @@ export class RecipeService {
 
   constructor(
     // private shoppingListSrv: ShoppingListService,//Comment since we use the store and state
-    private store: Store<fromAppState.AppState>
+    private store: Store<fromAppState.AppState>,
+    private RecipeRatingSrv: RecipeRatingService
   ) {}
 
   setRecipes(recpies: Recipe[]): void {
@@ -72,6 +74,7 @@ export class RecipeService {
   addRecipe(recipe: Recipe) {
     this.recipes.push(recipe);
     this.recipeListChanged.next(this.recipes.slice());
+    //this.RecipeRatingSrv.
   }
   updateRecipe(idx: number, recipe: Recipe) {
     this.recipes[idx] = recipe;

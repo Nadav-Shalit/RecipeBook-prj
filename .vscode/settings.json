@@ -1,6 +1,8 @@
 {
-    "workbench.colorTheme": "Cobalt2",
-    "workbench.colorCustomizations": {
-    "terminal.background": "#9373ff"
-    }
+  "workbench.colorTheme": "Cobalt2",
+  "workbench.colorCustomizations": {
+    "terminal.background": "#000000",
+    "terminal.foreground": "#ffffff"
+  },
+  "terminal.integrated.minimumContrastRatio": 9
 }
