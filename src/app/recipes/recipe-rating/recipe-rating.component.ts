@@ -15,15 +15,17 @@ export class RecipeRatingComponent implements OnInit {
 
   ngOnInit(): void {
     this.recipeRating = this.RecipeRatingSrv.getReipeRating(this.index);
-    for (let idx = 0; idx < Math.floor(this.getAvgRating()); idx++) {
+    for (
+      let idx = 0;
+      this.recipeRating && idx < Math.floor(this.ratingAvg());
+      idx++
+    ) {
       this.stars[idx] = 1;
     }
   }
-  getAvgRating(): number {
-    let avgRating = 0;
-    if (this.recipeRating && this.recipeRating.votesCount > 0) {
-      avgRating = this.recipeRating.ratingTotal / this.recipeRating.votesCount;
-    }
-    return avgRating;
+  ratingAvg(): number {
+    return this.recipeRating && this.recipeRating.votesCount > 0
+      ? this.recipeRating.ratingTotal / this.recipeRating.votesCount
+      : 0;
   }
 }

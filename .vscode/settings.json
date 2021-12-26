@@ -4,5 +4,8 @@
     "terminal.background": "#000000",
     "terminal.foreground": "#ffffff"
   },
-  "terminal.integrated.minimumContrastRatio": 9
+  "terminal.integrated.minimumContrastRatio": 10,
+  "terminal.integrated.fontFamily": "monospace",
+  "terminal.integrated.fontSize": 12,
+  "terminal.integrated.fontWeightBold": "normal"
 }

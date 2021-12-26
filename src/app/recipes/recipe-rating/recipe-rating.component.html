@@ -11,6 +11,6 @@
     ></span>
   </li>
   <li>
-    <label>{{ recipeRating.RatingAvg.toFixed(1) }}</label>
+    <label *ngIf="recipeRating">{{ ratingAvg().toFixed(1) }}</label>
   </li>
 </ul>

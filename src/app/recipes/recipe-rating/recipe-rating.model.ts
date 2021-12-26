@@ -7,7 +7,4 @@ export class RecipeRating {
     this.votesCount = votesCount;
     this.ratingTotal = ratingTotal;
   }
-  get RatingAvg(): number {
-    return this.votesCount > 0 ? this.ratingTotal / this.votesCount : 0;
-  }
 }
