@@ -13,12 +13,14 @@ export class RecipeRatingComponent implements OnInit {
 
   ngOnInit(): void {
     this.updateStars();
+    console.log("RecipeRatingComponent:16");
   }
   ratingAvg(): number {
     return this.recipeRating && this.recipeRating.votes > 0
-      ? Math.round(this.recipeRating.ratingTotal / this.recipeRating.votes)
+      ? Math.floor(this.recipeRating.ratingTotal / this.recipeRating.votes)
       : 0;
   }
+
   setRatingValue(ratingValue: number) {
     this.recipeRating.votes++;
     this.recipeRating.ratingTotal = this.recipeRating.ratingTotal + ratingValue;
@@ -26,7 +28,11 @@ export class RecipeRatingComponent implements OnInit {
   }
   updateStars() {
     this.stars = [0, 0, 0, 0, 0];
-    for (let idx = 1; this.recipeRating && idx <= this.ratingAvg(); idx++) {
+    for (
+      let idx = 1;
+      this.recipeRating && idx <= Math.round(this.ratingAvg());
+      idx++
+    ) {
       this.stars[idx - 1] = 1;
     }
   }

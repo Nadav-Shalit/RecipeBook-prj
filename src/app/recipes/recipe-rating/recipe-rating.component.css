@@ -9,9 +9,9 @@ li {
   color: gold;
   cursor: pointer;
 }
-li > label {
+li > label.votes {
   color: initial;
   padding: 0 15px;
-  font-size: smaller;
   font-weight: inherit;
+  font-size: smaller;
 }

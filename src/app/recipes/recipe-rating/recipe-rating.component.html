@@ -1,6 +1,7 @@
 <ul>
   <li *ngFor="let str of stars; let idx = index">
     <span
+      title="{{ ratingAvg() }}"
       id="str{{ idx }}"
       (click)="setRatingValue(idx + 1)"
       class="glyphicon"
@@ -12,6 +13,6 @@
     ></span>
   </li>
   <li>
-    <label>{{ ratingAvg() }}</label>
+    <label class="votes">{{ recipeRating.votes }} votes</label>
   </li>
 </ul>
