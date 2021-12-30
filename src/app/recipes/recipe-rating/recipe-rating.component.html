@@ -1,0 +1,17 @@
+<ul>
+  <li *ngFor="let str of stars; let idx = index">
+    <span
+      id="str{{ idx }}"
+      (click)="setRatingValue(idx + 1)"
+      class="glyphicon"
+      [ngClass]="{
+        'glyphicon-star-empty': str === 0,
+        'glyphicon-star': str === 1
+      }"
+      aria-hidden="true"
+    ></span>
+  </li>
+  <li>
+    <label>{{ ratingAvg() }}</label>
+  </li>
+</ul>
