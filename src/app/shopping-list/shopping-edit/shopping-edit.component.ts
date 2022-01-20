@@ -1,7 +1,13 @@
-import { Subscription } from "rxjs";
+import { BehaviorSubject, Subscription } from "rxjs";
 import { Store } from "@ngrx/store";
 //import { ShoppingListService } from "./../shopping-list.service";//Comment since we use the store and state
-import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from "@angular/core";
 
 import { Ingredient } from "../../shared/ingredient.model";
 import { FormGroup } from "@angular/forms";
@@ -17,12 +23,18 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   @ViewChild("frmIngredient", { static: false }) frmIngredient: FormGroup;
   selectedIngredientIndex: number = -1;
   subscriptionParam: Subscription;
+  ingredients$ = new BehaviorSubject<Ingredient[]>([]);
+
   constructor(
     // private shoppingListSrv: ShoppingListService,//Comment since we use the store and state
     private store: Store<fromAppState.AppState>
   ) {}
 
   ngOnInit() {
+    this.store.select("shoppingList").subscribe((stateData) => {
+      this.ingredients$.next(stateData.ingredients);
+    });
+
     this.subscriptionParam = this.store
       .select("shoppingList")
       .subscribe((stateData) => {
@@ -73,5 +85,8 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
       this.frmIngredient.reset();
       this.store.dispatch(new ShoppingListActions.ClearIngredients());
     }
+  }
+  ingredientsCount() {
+    return this.ingredients$ ? this.ingredients$.value.length : 0;
   }
 }

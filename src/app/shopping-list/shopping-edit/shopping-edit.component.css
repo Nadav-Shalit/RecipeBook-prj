@@ -1,3 +1,10 @@
-button{
-    margin: 1px 3px;
+button {
+  margin: 1px 3px;
+}
+div.cart {
+  /* color: white; */
+  font-size: 18px;
+  vertical-align: middle;
+  font-weight: normal;
+  cursor: none;
 }

@@ -13,7 +13,6 @@ export class RecipeRatingComponent implements OnInit {
 
   ngOnInit(): void {
     this.updateStars();
-    console.log("RecipeRatingComponent:16");
   }
   ratingAvg(): number {
     return this.recipeRating && this.recipeRating.votes > 0
